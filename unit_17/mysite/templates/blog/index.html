@@ -1,0 +1,27 @@
+{% extends "base.html" %} 
+{% load staticfiles %}
+
+{% block title %} {{ block.super }} - SECTION NAME {% endblock %}
+
+ {% block content %}
+        <h1>Blog {{ title }} says...</h1>
+                {% if categories_list %}
+            <ul>
+                {% for category in categories_list %}
+                <li>{{ category.name }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no categories present.</strong>
+        {% endif %}
+                {% if posts_list %}
+                <div id="postslist">
+                    {% for post in posts_list %}
+                    <p><a href="/blog/posts/{{ post.slug }}/">{{ post.title }}</a></p>
+                    {% endfor %}
+                </div>
+        {% else %}
+            <strong>There are no posts present.</strong>
+        {% endif %}
+ {% endblock %}
+
